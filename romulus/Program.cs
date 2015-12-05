@@ -1,55 +1,125 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Text;
 
 namespace romulus
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        static void Main()
         {
-            bool repeat = false;
-            Converter converter = new Converter();
-            do
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainWindow());
+        }
+    }
+
+    public class RomanNumeralConverter
+    {
+        public RomanNumeralConverter(String input)
+        {
+            mInput = input;
+            mInputAsInt = Convert.ToInt32(mInput);
+        }
+
+        private int mDivider = 5;
+        private int mRemainder = 4;
+        private String[] mCurrentMap;
+        private String[][] mFullMap = 
+        {
+            new String[] {"I", "IV", "V", "IX"},
+            new String[] {"X", "XL", "L", "XC"},
+            new String[] {"C", "CD", "D", "CM"},
+            new string[] {"M"}
+        };
+        private int mCurrentNumber;
+        private int[] split()
+        {
+            int[] splitNumber = new int[4];
+            splitNumber[3] = mInputAsInt / 1000; //tausender
+            splitNumber[2] = mInputAsInt % 1000 / 100; //hunderter
+            splitNumber[1] = mInputAsInt % 100 / 10; //zehner
+            splitNumber[0] = mInputAsInt % 10; //einser
+            return splitNumber;
+        }
+        private void clear()
+        {
+
+        }
+        public String getRomanNumeral()
+        {
+            mTmpResult.Clear();
+            int[] splitNumber = split();
+            int splitNumberPart;
+            for (int i = mInput.Length; i >= 0; i--)
             {
-                string input;
-                int numberToConvert;//maybe
-
-                Console.WriteLine("Type in decimal number: ");
-                input = Console.ReadLine();
-
-                if (converter.inputIsCorrect(input))
+                splitNumberPart = i - 1;
+                if (i == 0)
                 {
-                    numberToConvert = converter.getInputNumberAsInt();//maybe in convert function, so we don't need a parameter for convert-function
-                    converter.convert(numberToConvert);
+                    mResult = mTmpResult;
+                    return mResult.ToString();
                 }
-
-                // do-while-Schleife für Wiederholung der "Nochmal"-Frage
-                bool repeatQuestion = false;
-                do
+                else
                 {
-                    Console.WriteLine("Nochmal? J/N");
-                    string repeatInput;
+                    mCurrentNumber = splitNumber[splitNumberPart];
+                    mCurrentMap = mFullMap[splitNumberPart];
 
-                    repeatInput = Console.ReadLine();
-                    if (repeatInput == "J" || repeatInput == "j")
+                }
+                int tmpRemainder = mCurrentNumber % mDivider;
+                if (mCurrentNumber / mDivider > 0)
+                {
+                    //Merke dritten Eintrag aus Map
+                    mTmpResult.Append(mCurrentMap[2]);
+
+                    if (tmpRemainder < mRemainder)
                     {
-                        repeat = true;
-                        repeatQuestion = false;
-                    }
-                    else if (repeatInput == "N" || repeatInput == "n")
-                    {
-                        repeat = false;
-                        repeatQuestion = false;
+                        if (tmpRemainder > 0)
+                        {
+                            for (int j = tmpRemainder; j > 0; j--)
+                            {
+                                // erster Eintrag der Map an Ergebniss dran hängen
+                                mTmpResult.Append(mCurrentMap[0]);
+                            }
+                        }
                     }
                     else
                     {
-                        repeat = true;
-                        repeatQuestion = true;
+                        // vergiss dritten Eintrag aus Map
+                        string textToRemove = mCurrentMap[2];
+                        int pos = mTmpResult.ToString().IndexOf(textToRemove);
+                        mTmpResult.Remove(pos, textToRemove.Length);
+
+                        // Merke vierten Eintrag aus Map
+                        mTmpResult.Append(mCurrentMap[3]);
+
                     }
-                } while (repeatQuestion);
-            } while (repeat);
+                }
+                else
+                {
+                    if (tmpRemainder < mRemainder)
+                    {
+                        for (int j = tmpRemainder; j > 0; j--)
+                        {
+                            // erster Eintrag der Map an Ergebniss dran hängen
+                            mTmpResult.Append(mCurrentMap[0]);
+                        }
+                    }
+                    else
+                    {
+                        //Merke zweiten Eintrag aus aktueller Map
+                        mTmpResult.Append(mCurrentMap[1]);
+                    }
+                }
+            }
+            return mResult.ToString();
         }
+        private int mInputAsInt;
+        private String mInput;
+        StringBuilder mResult = new StringBuilder(); // do we really need StringBuilder-Type?
+        StringBuilder mTmpResult = new StringBuilder();
     }
 }

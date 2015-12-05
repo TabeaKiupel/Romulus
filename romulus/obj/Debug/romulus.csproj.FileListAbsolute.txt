@@ -1,0 +1,18 @@
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\bin\Debug\romulus.exe.config
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\bin\Debug\romulus.exe
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\bin\Debug\romulus.pdb
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\obj\Debug\romulus.Properties.Resources.resources
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\obj\Debug\romulus.csproj.GenerateResource.Cache
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\obj\Debug\romulus.exe
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\obj\Debug\romulus.pdb
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\obj\Debug\romulus.MainWindow.resources
+C:\Users\Christian\Eigene Programme\romulus\romulus\romulus\obj\Debug\romulus.csprojResolveAssemblyReference.cache
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\bin\Debug\romulus.exe.config
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\obj\Debug\romulus.exe
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\obj\Debug\romulus.pdb
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\bin\Debug\romulus.exe
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\bin\Debug\romulus.pdb
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\obj\Debug\romulus.csprojResolveAssemblyReference.cache
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\obj\Debug\romulus.MainWindow.resources
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\obj\Debug\romulus.Properties.Resources.resources
+C:\Users\Tabea\Documents\Insiders\romulus\romulus\obj\Debug\romulus.csproj.GenerateResource.Cache
